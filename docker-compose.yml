@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  app:
+    container_name: pkhex-api
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./PKHeX.API:/app
+    command: sh -c "dotnet build -c Release -o out && dotnet out/PKHeX.API.dll"
