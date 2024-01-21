@@ -11,4 +11,6 @@ services:
       - "5000:5000"
     volumes:
       - ./PKHeX.API:/app
-    command: sh -c "dotnet build -c Release -o out && dotnet out/PKHeX.API.dll"
+      - /app/obj/ # <- directory won't be mounted
+      - /app/bin/ # <- directory won't be mounted
+    command: sh -c "dotnet watch run -v --project PKHeX.API.csproj --urls http://*:5000"
